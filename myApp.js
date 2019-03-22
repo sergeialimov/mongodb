@@ -81,11 +81,11 @@ const Person = mongoose.model('Person', personSchema);
 // function like this as the last argument.
 
 // create document - an instance of model
-// const persInstance = new Person({
-//   name:'Arkadiy',
-//   age: 32,
-//   favoriteFoods: ['pelmeny', 'ryba'],
-// });
+const persInstance = new Person({
+  name:'Arkadiy',
+  age: 32,
+  favoriteFoods: ['pelmeny', 'ryba'],
+});
 
 // save document
 // const createAndSavePerson = function(done) {
