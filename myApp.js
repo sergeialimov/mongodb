@@ -49,7 +49,7 @@ const personSchema = new Schema({
 })
 
 // create model from schema
-// const Person = mongoose.model('Person', personSchema);
+const Person = mongoose.model('Person', personSchema);
 
 // **Note**: GoMix is a real server, and in real servers interactions with
 // the db are placed in handler functions, to be called when some event happens
