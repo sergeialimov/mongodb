@@ -14,7 +14,7 @@
 
 const mongoose = require('mongoose');
 mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true});
-// mongodb+srv://sergei:<password>@cluster0-ahcy9.mongodb.net/test?retryWrites=true
+
 /** # SCHEMAS and MODELS #
 /*  ====================== */
 
@@ -38,9 +38,18 @@ mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true});
 // fields, use simple validators like `required` or `unique`, and set
 // `default` values. See the [mongoose docs](http://mongoosejs.com/docs/guide.html).
 
-// <Your code here >
+// define schema
+const Schema = mongoose.Schema;
 
-var Person /* = <Your Model> */
+// create instance of schema
+const personSchema = new Schema({
+  name : { type: String, required: true },
+  age : Number,
+  favoriteFoods : [String],
+})
+
+// create model from schema
+// const Person = mongoose.model('Person', personSchema);
 
 // **Note**: GoMix is a real server, and in real servers interactions with
 // the db are placed in handler functions, to be called when some event happens
@@ -71,17 +80,22 @@ var Person /* = <Your Model> */
 // This is a common pattern, all the **CRUD** methods take a callback 
 // function like this as the last argument.
 
-// - Example -
-// ...
-// person.save(function(err, data) {
-//    ...do your stuff here...
+// create document - an instance of model
+// const persInstance = new Person({
+//   name:'Arkadiy',
+//   age: 32,
+//   favoriteFoods: ['pelmeny', 'ryba'],
 // });
 
-var createAndSavePerson = function(done) {
-  
-  done(null /*, data*/);
-
-};
+// save document
+// const createAndSavePerson = function(done) {
+//   persInstance.save(function(err, persInstance) {
+//      if (err) {
+//        console.log(err);
+//      }
+//      done(null, persInstance);
+//   });
+// };
 
 /** 4) Create many People with `Model.create()` */
 
