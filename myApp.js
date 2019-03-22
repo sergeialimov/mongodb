@@ -61,7 +61,7 @@ const Person = mongoose.model('Person', personSchema);
 // **Warning** - When interacting with remote services, **errors may occur** !
 
 // - Example -
-// var someFunc = function(done) {
+// const someFunc = function(done) {
 //   ... do something (risky) ...
 //   if(error) return done(error);
 //   done(null, result);
@@ -146,7 +146,7 @@ function createManyPeople(arrayOfPeople, done) {
 
 const personName = 'Oleg';
 
-var findPeopleByName = function(personName, done) {
+const findPeopleByName = function(personName, done) {
   Person.find({ name: personName }, function (err, data) {
     if (err)  {
       console.log(err);
@@ -164,7 +164,7 @@ var findPeopleByName = function(personName, done) {
 // using `Model.findOne() -> Person`. Use the function
 // argument `food` as search key
 
-var findOneByFood = function(food, done) {
+const findOneByFood = function(food, done) {
 
   done(null/*, data*/);
   
@@ -179,7 +179,7 @@ var findOneByFood = function(food, done) {
 // using `Model.findById() -> Person`.
 // Use the function argument 'personId' as search key.
 
-var findPersonById = function(personId, done) {
+const findPersonById = function(personId, done) {
   
   done(null/*, data*/);
   
@@ -210,8 +210,8 @@ var findPersonById = function(personId, done) {
 // manually mark it as edited using `document.markModified('edited-field')`
 // (http://mongoosejs.com/docs/schematypes.html - #Mixed )
 
-var findEditThenSave = function(personId, done) {
-  var foodToAdd = 'hamburger';
+const findEditThenSave = function(personId, done) {
+  const foodToAdd = 'hamburger';
   
   done(null/*, data*/);
 };
@@ -231,8 +231,8 @@ var findEditThenSave = function(personId, done) {
 // to `findOneAndUpdate()`. By default the method
 // passes the unmodified object to its callback.
 
-var findAndUpdate = function(personName, done) {
-  var ageToSet = 20;
+const findAndUpdate = function(personName, done) {
+  const ageToSet = 20;
 
   done(null/*, data*/);
 };
@@ -247,7 +247,7 @@ var findAndUpdate = function(personName, done) {
 // previous update methods. They pass the removed document to the cb.
 // As usual, use the function argument `personId` as search key.
 
-var removeById = function(personId, done) {
+const removeById = function(personId, done) {
   
   done(null/*, data*/);
     
@@ -263,8 +263,8 @@ var removeById = function(personId, done) {
 // containing the outcome of the operation, and the number of items affected.
 // Don't forget to pass it to the `done()` callback, since we use it in tests.
 
-var removeManyPeople = function(done) {
-  var nameToRemove = "Mary";
+const removeManyPeople = function(done) {
+  const nameToRemove = "Mary";
 
   done(null/*, data*/);
 };
@@ -276,7 +276,7 @@ var removeManyPeople = function(done) {
 
 // If you don't pass the `callback` as the last argument to `Model.find()`
 // (or to the other similar search methods introduced before), the query is
-// not executed, and can even be stored in a variable for later use.
+// not executed, and can even be stored in a constiable for later use.
 // This kind of object enables you to build up a query using chaining syntax.
 // The actual db search is executed when you finally chain
 // the method `.exec()`, passing your callback to it.
@@ -287,8 +287,8 @@ var removeManyPeople = function(done) {
 // Chain `.find()`, `.sort()`, `.limit()`, `.select()`, and then `.exec()`,
 // passing the `done(err, data)` callback to it.
 
-var queryChain = function(done) {
-  var foodToSearch = "burrito";
+const queryChain = function(done) {
+  const foodToSearch = "burrito";
   
   done(null/*, data*/);
 };
