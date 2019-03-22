@@ -88,14 +88,14 @@ const persInstance = new Person({
 });
 
 // save document
-// const createAndSavePerson = function(done) {
-//   persInstance.save(function(err, persInstance) {
-//      if (err) {
-//        console.log(err);
-//      }
-//      done(null, persInstance);
-//   });
-// };
+const createAndSavePerson = function(done) {
+  persInstance.save(function(err, persInstance) {
+     if (err) {
+       console.log(err);
+     }
+     done(null, persInstance);
+  });
+};
 
 /** 4) Create many People with `Model.create()` */
 
