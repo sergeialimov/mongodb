@@ -184,16 +184,16 @@ const findOneByFood = function(food, done) {
 // using `Model.findById() -> Person`.
 // Use the function argument 'personId' as search key.
 
-const personId = '5c951fe55549f02605234856';
-const findPersonById = function(personId, done) {
-  Person.findById({ _id: personId }, function (err, data) {
-    if (err)  {
-      console.log(err);
-    }
-    console.log('---------\n', data);
-    done(null, data);
-  });
-};
+// const personId = '5c951fe55549f02605234856';
+// const findPersonById = function(personId, done) {
+//   Person.findById({ _id: personId }, function (err, data) {
+//     if (err)  {
+//       console.log(err);
+//     }
+//     console.log('---------\n', data);
+//     done(null, data);
+//   });
+// };
 
 /** # CR[U]D part III - UPDATE # 
 /*  ============================ */
@@ -220,11 +220,21 @@ const findPersonById = function(personId, done) {
 // manually mark it as edited using `document.markModified('edited-field')`
 // (http://mongoosejs.com/docs/schematypes.html - #Mixed )
 
+const personId = '5c95278561c2a72b341be25c';
+
 const findEditThenSave = function(personId, done) {
   const foodToAdd = 'hamburger';
-  
-  done(null/*, data*/);
+  Person.findById({ _id: personId }, function (err, person) {
+    if (err) console.log('err1', err);
+    person.favoriteFoods.push(foodToAdd);
+
+    person.save(function (err, data) {
+      if (err) console.log('err2', err);
+      done(null, data);
+    });
+  });
 };
+
 
 /** 9) New Update : Use `findOneAndUpdate()` */
 
@@ -323,7 +333,7 @@ exports.PersonModel = Person;
 exports.createAndSavePerson = createAndSavePerson;
 exports.findPeopleByName = findPeopleByName;
 exports.findOneByFood = findOneByFood;
-exports.findPersonById = findPersonById;
+// exports.findPersonById = findPersonById;
 exports.findEditThenSave = findEditThenSave;
 exports.findAndUpdate = findAndUpdate;
 exports.createManyPeople = createManyPeople;
