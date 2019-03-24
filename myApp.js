@@ -144,8 +144,8 @@ function createManyPeople(arrayOfPeople, done) {
 // It supports an extremely wide range of search options. Check it in the docs.
 // Use the function argument `personName` as search key.
 
-const personName = 'Oleg';
 
+// const personName = 'Oleg';
 const findPeopleByName = function(personName, done) {
   Person.find({ name: personName }, function (err, data) {
     if (err)  {
@@ -170,7 +170,6 @@ const findOneByFood = function(food, done) {
     if (err)  {
       console.log(err);
     }
-    console.log('---------\n', data);
     done(null, data);
   });
 };
@@ -184,13 +183,14 @@ const findOneByFood = function(food, done) {
 // using `Model.findById() -> Person`.
 // Use the function argument 'personId' as search key.
 
+// == working fine ==
 // const personId = '5c951fe55549f02605234856';
 // const findPersonById = function(personId, done) {
 //   Person.findById({ _id: personId }, function (err, data) {
 //     if (err)  {
 //       console.log(err);
 //     }
-//     console.log('---------\n', data);
+//     console.log('---- data -----\n', data);
 //     done(null, data);
 //   });
 // };
@@ -220,21 +220,19 @@ const findOneByFood = function(food, done) {
 // manually mark it as edited using `document.markModified('edited-field')`
 // (http://mongoosejs.com/docs/schematypes.html - #Mixed )
 
-const personId = '5c95278561c2a72b341be25c';
-
-const findEditThenSave = function(personId, done) {
-  const foodToAdd = 'hamburger';
-  Person.findById({ _id: personId }, function (err, person) {
-    if (err) console.log('err1', err);
-    person.favoriteFoods.push(foodToAdd);
-
-    person.save(function (err, data) {
-      if (err) console.log('err2', err);
-      done(null, data);
-    });
-  });
-};
-
+// == working fine ==
+// const personId = '5c95278561c2a72b341be25c';
+// const findEditThenSave = function(personId, done) {
+//   const foodToAdd = 'hamburger';
+//   Person.findById({ _id: personId }, function (err, person) {
+//     if (err) console.log('err1', err);
+//     person.favoriteFoods.push(foodToAdd);
+//     person.save(function (err, data) {
+//       if (err) console.log('err2', err);
+//       done(null, data);
+//     });
+//   });
+// };
 
 /** 9) New Update : Use `findOneAndUpdate()` */
 
@@ -251,10 +249,15 @@ const findEditThenSave = function(personId, done) {
 // to `findOneAndUpdate()`. By default the method
 // passes the unmodified object to its callback.
 
+const personName = 'abc';
 const findAndUpdate = function(personName, done) {
   const ageToSet = 20;
-
-  done(null/*, data*/);
+  Person.findOneAndUpdate({ name: personName }, { $set: { age: ageToSet }}, { new: true }, (err, data) => {
+    if (err) {
+        console.log("== Something wrong when updating data! ==");
+    }
+    done(null, data);
+  });
 };
 
 /** # CRU[D] part IV - DELETE #
@@ -334,7 +337,7 @@ exports.createAndSavePerson = createAndSavePerson;
 exports.findPeopleByName = findPeopleByName;
 exports.findOneByFood = findOneByFood;
 // exports.findPersonById = findPersonById;
-exports.findEditThenSave = findEditThenSave;
+// exports.findEditThenSave = findEditThenSave;
 exports.findAndUpdate = findAndUpdate;
 exports.createManyPeople = createManyPeople;
 exports.removeById = removeById;
