@@ -292,8 +292,12 @@ const removeById = function(personId, done) {
 
 const removeManyPeople = function(done) {
   const nameToRemove = "Mary";
-
-  done(null/*, data*/);
+  Person.remove({ name: nameToRemove }, (err, data) => {
+    if (err) {
+        console.log("== Something wrong when updating data! ==\n", err);
+    }
+    done(null, data);
+  });
 };
 
 /** # C[R]UD part V -  More about Queries # 
@@ -313,12 +317,6 @@ const removeManyPeople = function(done) {
 // Limit the results to two documents, and hide their age.
 // Chain `.find()`, `.sort()`, `.limit()`, `.select()`, and then `.exec()`,
 // passing the `done(err, data)` callback to it.
-
-const queryChain = function(done) {
-  const foodToSearch = "burrito";
-  
-  done(null/*, data*/);
-};
 
 /** **Well Done !!**
 /* You completed these challenges, let's go celebrate !
