@@ -318,6 +318,20 @@ const removeManyPeople = function(done) {
 // Chain `.find()`, `.sort()`, `.limit()`, `.select()`, and then `.exec()`,
 // passing the `done(err, data)` callback to it.
 
+const queryChain = function(done) {
+  const foodToSearch = "burrito";
+  Person.find({ favoriteFoods: foodToSearch })
+    .sort({ name: 1 })
+    .limit(2)
+    .select('-age')
+    .exec((err, data) => {
+      if (err) {
+          console.log("== Something wrong when updating data! ==");
+      }
+    done(null, data);
+  });
+};
+
 /** **Well Done !!**
 /* You completed these challenges, let's go celebrate !
  */
